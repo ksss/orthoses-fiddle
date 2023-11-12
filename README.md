@@ -1,8 +1,23 @@
 # Orthoses::Fiddle
 
-TODO: Delete this and the text below, and describe your gem
+[orthoses](https://github.com/ksss/orthoses) extention for fiddle
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/orthoses/fiddle`. To experiment with that code, run `bin/console` for an interactive prompt.
+orthoses-fiddle generate RBS from `Fiddle::Importer#extern`.
+
+```rb
+module M
+  extend ::Fiddle::Importer
+  dlload libc_so
+  extern "size_t strlen(const char*)"
+end
+```
+
+```rbs
+module M
+  # extern "size_t strlen(const char*)"
+  def self.strlen: (untyped) -> Integer
+end
+```
 
 ## Installation
 
@@ -18,7 +33,22 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```rb
+Orthoses::Builder.new do
+  use Orthoses::CreateFileByName,
+      depth: 1,
+      to: 'out'
+      rmtree: true
+  use Orthoses::Fiddle
+  run -> {
+    module M
+      extend ::Fiddle::Importer
+      dlload libc_so
+      extern "int strcmp(char*, char*)"
+    end
+  }
+end
+```
 
 ## Development
 

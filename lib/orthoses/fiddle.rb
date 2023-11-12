@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "fiddle/version"
+require 'orthoses'
 
-module Orthoses
-  module Fiddle
-    class Error < StandardError; end
-    # Your code goes here...
-  end
-end
+require_relative "fiddle/version"
+require_relative "fiddle/importer"
