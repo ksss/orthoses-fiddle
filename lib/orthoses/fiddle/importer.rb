@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
+require 'fiddle/import'
+
 module Orthoses
   module Fiddle
     class Importer
+      include ::Fiddle::Types
+
       def initialize(loader)
         @loader = loader
       end
 
       def call
-        extern = CallTracer::Lazy.new
-        store = extern.trace('Fiddle::Importer#extern') do
+        extern = CallTracer.new
+        store = extern.trace(::Fiddle::Importer.instance_method(:extern)) do
           @loader.call
         end
-
-        self.class.include ::Fiddle::Types
 
         extern.captures.each do |capture|
           base_name = Utils.module_name(capture.method.receiver) or next
