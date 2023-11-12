@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orthoses-fiddle (0.1.1)
+    orthoses-fiddle (0.2.0)
       fiddle
       orthoses
 
