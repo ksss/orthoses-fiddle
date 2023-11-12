@@ -47,7 +47,7 @@ module Orthoses
           'String'
         when VARIADIC
           unless before
-            return Orthoses.logger.error("Found unexpected signature")
+            raise "Found unexpected signature"
           end
           "*#{fiddle_to_rbs(before)}"
         else

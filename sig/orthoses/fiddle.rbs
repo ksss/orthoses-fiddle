@@ -1,6 +1,14 @@
 module Orthoses
   module Fiddle
     VERSION: String
-    # See the writing guide of rbs: https://github.com/ruby/rbs#guides
+    class Importer
+      @loader: Orthoses::_Call
+      def initialize: (Orthoses::_Call loader) -> void
+      def call: () -> Orthoses::store
+
+      private
+
+      def fiddle_to_rbs: (Integer fiddle_type, ?before: Integer?) -> String
+    end
   end
 end

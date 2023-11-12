@@ -18,4 +18,5 @@ gems:
   # Skip loading rbs gem's RBS.
   # It's unnecessary if you don't use rbs as a library.
   - name: rbs
+  - name: steep
     ignore: true
